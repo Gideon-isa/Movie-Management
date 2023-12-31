@@ -1,4 +1,7 @@
 
+using Microsoft.EntityFrameworkCore;
+using MovieManagement.DataAccess.Context;
+
 namespace GMovieManagement.API
 {
     public class Program
@@ -8,6 +11,17 @@ namespace GMovieManagement.API
             var builder = WebApplication.CreateBuilder(args);
 
             // Add services to the container.
+
+            // Add connection to Database
+            //builder.Services.AddDbContext<MovieManagementDbContext>(
+            //    option => option.UseSqlServer(builder.Configuration.GetConnectionString("MovieConnection")));
+            builder.Services.AddDbContext<MovieManagementDbContext>(p =>
+            {
+                p.UseSqlServer(builder.Configuration.GetConnectionString("MovieConnection"), o =>
+                {
+                    o.MigrationsAssembly("MovieManagement.DataAccess");
+                });
+            });
 
             builder.Services.AddControllers();
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
