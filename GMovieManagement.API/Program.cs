@@ -1,6 +1,7 @@
 
 using Microsoft.EntityFrameworkCore;
 using MovieManagement.DataAccess.Context;
+using System.Globalization;
 
 namespace GMovieManagement.API
 {
@@ -13,14 +14,13 @@ namespace GMovieManagement.API
             // Add services to the container.
 
             // Add connection to Database
-            //builder.Services.AddDbContext<MovieManagementDbContext>(
-            //    option => option.UseSqlServer(builder.Configuration.GetConnectionString("MovieConnection")));
+            builder.Services.AddDbContext<MovieManagementDbContext>(
+                option => option.UseSqlServer(builder.Configuration.GetConnectionString("MovieConnection")));
+
             builder.Services.AddDbContext<MovieManagementDbContext>(p =>
             {
-                p.UseSqlServer(builder.Configuration.GetConnectionString("MovieConnection"), o =>
-                {
-                    o.MigrationsAssembly("MovieManagement.DataAccess");
-                });
+                p.UseSqlServer(builder.Configuration.GetConnectionString("MovieConnection"));
+                
             });
 
             builder.Services.AddControllers();

@@ -23,15 +23,17 @@ namespace MovieManagement.DataAccess.Context
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            // Call the base method to apply default configurations
+            // This Call the base method to apply default configurations
             base.OnModelCreating(modelBuilder);
 
+            //
             var actors = new List<Actor>()
             {
                 new Actor { Id = 1, FirstName = "Chuck", LastName = "Norris"},
                 new Actor { Id = 2, FirstName = "Jane", LastName = "Doe"},
                 new Actor { Id = 3, FirstName = "Van", LastName = "Damme"}
             };
+            // seeding data 
             modelBuilder.Entity<Actor>().HasData(actors);
 
             var movies = new List<Movie>()
@@ -42,6 +44,7 @@ namespace MovieManagement.DataAccess.Context
                 new Movie { Id = 4, Name = "Matrix", Description = "Blue or Red Pill", ActorId =3},
             };
 
+            // seeding data
             modelBuilder.Entity<Movie>().HasData(movies);
         }
     }
