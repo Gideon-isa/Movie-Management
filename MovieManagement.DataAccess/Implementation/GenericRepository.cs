@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Text;
+using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 
 namespace MovieManagement.DataAccess.Implementation
@@ -13,7 +14,7 @@ namespace MovieManagement.DataAccess.Implementation
 
     public class GenericRepository<T> : IGenericRepository<T> where T : class
     {
-        private readonly MovieManagementDbContext _context;
+        protected internal readonly MovieManagementDbContext _context;
 
         public GenericRepository(MovieManagementDbContext context)
         {
@@ -36,6 +37,7 @@ namespace MovieManagement.DataAccess.Implementation
             return await _context.Set<T>().Where(predicate).ToListAsync(); 
         }
 
+        
         public async Task<IEnumerable<T>> GetAll()
         {
             return await _context.Set<T>().ToListAsync();

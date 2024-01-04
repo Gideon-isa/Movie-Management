@@ -3,6 +3,7 @@ using Microsoft.EntityFrameworkCore;
 using MovieManagement.DataAccess.Context;
 using MovieManagement.DataAccess.Implementation;
 using MovieManagement.Domain.Repository;
+using System.Text.Json.Serialization;
 
 namespace GMovieManagement.API
 {
@@ -26,7 +27,7 @@ namespace GMovieManagement.API
 
             // 
             builder.Services.AddTransient<IUnitOfWork, UnitOfWork>();
-
+            builder.Services.AddMvcCore().AddJsonOptions(x => x.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.IgnoreCycles);
             builder.Services.AddControllers();
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
             builder.Services.AddEndpointsApiExplorer();

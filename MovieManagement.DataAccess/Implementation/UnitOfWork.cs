@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 
 namespace MovieManagement.DataAccess.Implementation
@@ -22,7 +23,7 @@ namespace MovieManagement.DataAccess.Implementation
         private IGenreRepository _genre;
         private IBiographyRepository _biography;
 
-
+        [JsonIgnore]
         public IActorRepository Actor
         {
             get
